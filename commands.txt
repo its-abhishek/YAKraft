@@ -1,0 +1,31 @@
+# 3 nodes 
+python RaftNode.py -a 127.0.0.1:5010 -i 1 -e 2/127.0.0.1:5020,3/127.0.0.1:5030 
+python RaftNode.py -a 127.0.0.1:5020 -i 2 -e 1/127.0.0.1:5010,3/127.0.0.1:5030 
+python RaftNode.py -a 127.0.0.1:5030 -i 3 -e 1/127.0.0.1:5010,2/127.0.0.1:5020
+
+
+# 5 nodes
+python RaftNode.py -a 127.0.0.1:5010 -i 1 -e 2/127.0.0.1:5020,3/127.0.0.1:5030,4/127.0.0.1:5040,5/127.0.0.1:5050 
+python RaftNode.py -a 127.0.0.1:5020 -i 2 -e 1/127.0.0.1:5010,3/127.0.0.1:5030,4/127.0.0.1:5040,5/127.0.0.1:5050 
+python RaftNode.py -a 127.0.0.1:5030 -i 3 -e 1/127.0.0.1:5010,2/127.0.0.1:5020,4/127.0.0.1:5040,5/127.0.0.1:5050  
+python RaftNode.py -a 127.0.0.1:5040 -i 4 -e 1/127.0.0.1:5010,2/127.0.0.1:5020,3/127.0.0.1:5030,5/127.0.0.1:5050 
+python RaftNode.py -a 127.0.0.1:5050 -i 5 -e 1/127.0.0.1:5010,2/127.0.0.1:5020,3/127.0.0.1:3050,4/127.0.0.1:5040
+
+
+
+Broker creation record 
+data = b'{"brokerId":"2","brokerHost": "hello.com","brokerPort": "3000","securityProtocol": "HTTPS","rackId": "12"}'
+
+Topic creation
+data = b'{"name": "share"}
+
+Partition creation 
+data = b'{"partitionId": "0", "topicUUID": "",  "replicas": [], "ISR": [], "removingReplicas": [], "addingReplicas": [],"leader": "", "partitionEpoch": 0" }'
+
+producer creation 
+data = b'{"brokerId": "","producerId": "0"}'
+
+data = b'2'
+r = requests.post("http://127.0.1.1:5021/GetBrokerById", data=data)
+
+
